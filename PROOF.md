@@ -1,10 +1,12 @@
 # Observable proof
 
-This file exists to answer the hiring-manager question that a case-study README cannot answer by itself:
+This file answers a hiring-manager question that a case-study README cannot answer by itself:
 
 > **What is actually implemented, and what evidence exists that the system behaves as described?**
 
 The points below were derived from a fresh read of the private implementation repository. No private source code, prompts, exact contracts, selectors, credentials or raw release artifacts are copied here.
+
+**Ownership note:** implementation evidence is not the same as a claim that I personally hand-authored or independently selected every low-level technical mechanism. My direct role is product research/direction, system blueprint and requirements, expert/persona orchestration, acceptance criteria and quality gates; AI is used heavily in implementation.
 
 ## Implemented surfaces visible in the private source
 
@@ -39,13 +41,11 @@ Those are different environments and different claims.
 
 ### Artifact-bound verdicts
 
-Evidence records are bound to a concrete artifact identity rather than an `auto` or floating latest-build concept. Rechecks are designed to compare evidence only when provenance is sufficiently comparable.
+Evidence records are bound to a concrete artifact identity rather than an `auto` or floating latest-build concept. Rechecks compare evidence only when provenance is sufficiently comparable.
 
 ### Preserved failure replay
 
 The implementation includes a preserved-failure replay path whose criterion is that the **same failing build should reproduce the same correctly classified result across repeated runs**.
-
-That matters because a recheck system is weak if it silently changes the identity of the thing being evaluated.
 
 ### Test evidence
 
@@ -55,9 +55,7 @@ The private source contains automated tests around runtime evidence and identica
 
 A historical runtime artifact and a later project/filesystem snapshot can diverge.
 
-The tempting shortcut is to treat the later snapshot as if it were the thing that produced the earlier result. That creates cleaner-looking evidence and weaker truth.
-
-The system instead keeps the relationship explicit and refuses to collapse different artifact states into one proof record.
+Treating the later snapshot as if it produced the earlier result would create cleaner-looking evidence and weaker truth. The implementation instead keeps the relationship explicit.
 
 ## Sanitized output shape
 
@@ -77,15 +75,17 @@ The example is synthetic/redacted, but its fields reflect the public decision mo
 | Customer adoption / paid repeat use | Not claimed |
 | Broad framework coverage | Not claimed |
 
-## What I can defend in an interview
+## What I personally own and can explain
 
-- why exact artifact identity is part of the product rather than bookkeeping;
-- why environment must travel with the verdict;
-- why missing evidence maps to `INCONCLUSIVE` instead of guesswork;
-- how a recheck can become invalid through cross-artifact evidence mixing;
-- why controlled mechanism proof and commercial-environment proof are separate gates;
-- where AI accelerated implementation and where deterministic evidence had to overrule model plausibility.
+- why I pursued the release-verification problem and what product risk I wanted the system to address;
+- the high-level blueprint and required product behavior;
+- how I structured expert/persona workflows to research, build, critique and revise the system;
+- the quality gates and evidence standard I required before accepting stronger claims;
+- what the current proof supports and what it explicitly does not support;
+- how I send AI-generated work back for further iteration when it does not meet the system or quality requirements.
+
+For low-level choices such as a specific library, data structure or implementation technique, I distinguish between **implementation evidence** and **a decision I personally made**.
 
 ## Disclosure boundary
 
-The exact schemas, verifier implementation, selectors, fixtures, artifact hashes, operational credentials and raw evidence stay private. The goal here is to make the **existence and shape of the engineering proof inspectable** without making the product reproducible from the portfolio repo.
+The exact schemas, verifier implementation, selectors, fixtures, artifact hashes, operational credentials and raw evidence stay private. The goal is to make the existence and shape of the engineering proof inspectable without making the product reproducible from the portfolio repo.
