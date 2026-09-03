@@ -85,3 +85,9 @@ Technology is listed as implementation context, not as a self-rated proficiency 
 - a finished general release-governance platform.
 
 The implementation remains private. This repo exposes enough evidence to evaluate my engineering judgment without publishing the product blueprint.
+
+## Related engineering case studies
+
+- [Billable Meetings OS](https://github.com/SamCT86/billable-meetings-os-case-study) — deterministic contract + evidence verification.
+- [PriceBriefs](https://github.com/SamCT86/pricebriefs-case-study) — evidence-bound commercial decisions and refusal states.
+- [MachineOutcome](https://github.com/SamCT86/machineoutcome-case-study) — verified AI-agent outcomes before reliability claims.
