@@ -1,0 +1,15 @@
+{
+  "example_type": "synthetic_redacted_portfolio_example",
+  "product": "ReleaseProof",
+  "artifact_identity": "sha256:<redacted>",
+  "environment": "revenuecat_test_store",
+  "journey": {
+    "purchase": "PASS",
+    "provider_entitlement": "PASS",
+    "local_premium_access": "PASS",
+    "clean_session_restore": "PASS"
+  },
+  "verdict": "PASS",
+  "evidence_binding": "artifact + environment",
+  "scope_note": "Controlled mechanism example only. This does not claim Apple Sandbox/TestFlight submission-environment proof or App Store approval."
+}

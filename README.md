@@ -1,99 +1,87 @@
-# ReleaseProof — Public Engineering Case Study
+# ReleaseProof — exact-build subscription release verification
 
+**Sarmad Tawfeek · AI systems · technical implementation · automation**  
 **Status:** Building  
-**Focus:** Exact-build subscription release verification  
 **Portfolio:** https://sarmadtawfeek.se/
 
-> This repository is a public case study of the problem, system boundary and engineering decisions. The implementation source remains private by design.
+A subscription flow can look correct in source and still fail in the exact iOS candidate a team is preparing to ship. ReleaseProof narrows that risk to a concrete question:
 
-## The problem
+> **Can this exact release candidate demonstrate purchase, entitlement and clean-session restore with evidence tied to the artifact and environment that produced it?**
 
-A subscription flow can look correct in source code and still fail in the exact release candidate a team is preparing to ship. Purchase, entitlement state and clean-session restore are particularly expensive places to discover that mismatch late.
+ReleaseProof does **not** predict or guarantee App Store approval.
 
-ReleaseProof explores a narrower operational question:
+## What exists today
 
-**Can the exact release candidate demonstrate that its critical subscription journey works, with evidence that can be inspected and rechecked?**
+The private implementation is more than this documentation layer. Current source evidence includes:
 
-It does **not** predict or guarantee App Store approval.
+- a Next.js control surface plus an Expo / React Native canary path;
+- shared domain contracts for release, journey and evidence semantics;
+- exact-artifact resolution and evidence tooling;
+- a Gate-1 execution runtime;
+- purchase, provider entitlement, local premium access and clean-session restore checks;
+- evidence capture, failure classification, recheck and sign-off behavior;
+- automated tests around runtime evidence and identical rechecks;
+- CI / operational tooling around the verification flow.
 
-## System at a glance
+A controlled mechanism gate has passed in **RevenueCat Test Store**. I keep that claim deliberately narrow: controlled Test Store proof is not the same thing as submission-relevant Apple Sandbox/TestFlight proof.
+
+**Start with the evidence layer:** [PROOF.md](PROOF.md)
+
+## Why the design is narrow
 
 ```text
 Exact iOS release candidate
           ↓
-Critical subscription journey
+Revenue-critical journey
+purchase → entitlement → restore
           ↓
-Purchase / entitlement / restore checks
-          ↓
-Artifact-bound evidence
+Artifact + environment-bound evidence
           ↓
 PASS / FAIL / INCONCLUSIVE
           ↓
-Recheck + release decision support
+Recheck / release decision support
 ```
 
-## What I want a technical reviewer to inspect
+Three decisions matter most:
 
-This case study is less about showing a large codebase and more about showing the decisions behind a trustworthy verification workflow:
+1. **Exact artifact over source intent.** The thing being shipped is the thing that must be evaluated.
+2. **No cross-artifact evidence mixing.** A later build cannot silently inherit proof from an earlier one.
+3. **`INCONCLUSIVE` is valid.** Missing evidence is not a pass and not automatically a blocker.
 
-- **Exact artifact over source intent.** The release candidate being evaluated matters more than what the repository suggests should happen.
-- **Environment belongs to the result.** A verdict is weaker when the execution environment is not part of the evidence.
-- **Inconclusive is legitimate.** Missing or ambiguous evidence should not be silently converted into a pass or a blocker.
-- **Evidence should not cross artifact boundaries.** A clean recheck should not mix proof from different release candidates.
-- **Reproducibility matters.** A fixed failure should be re-evaluated through the same bounded journey.
+## A failure mode I had to design around
 
-## AI-native build approach
+A later filesystem or project snapshot can differ from the artifact that actually produced a historical run. If the system silently binds that later state to the earlier evidence, the release record becomes misleading.
 
-AI is part of how I explore and accelerate implementation. I use it as engineering leverage for solution exploration, implementation candidates, integration investigation, test scaffolding and review.
+The safer rule is to preserve artifact identity and provenance even when that produces a less convenient answer. This is one reason rechecks and evidence lineage are first-class parts of the design.
 
-The quality gate is not whether AI produced plausible code. The quality gate is whether the relevant behavior survives explicit constraints and evidence.
+## Where AI fits
 
-```text
-Problem + release risk
-        ↓
-Explicit journey + constraints
-        ↓
-AI-assisted exploration / implementation
-        ↓
-Integration with the release environment
-        ↓
-Acceptance criteria
-        ↓
-Evidence + failure states
-        ↓
-Review / recheck / revise
-```
+I use AI to accelerate implementation candidates, integration investigation, test ideas and review. I do **not** use model plausibility as the release verdict.
+
+The human-owned part of the workflow is deciding the release boundary, evidence authority, failure states and acceptance criteria — then checking whether the implementation survives them.
 
 More detail: [docs/HOW_I_BUILD_WITH_AI.md](docs/HOW_I_BUILD_WITH_AI.md)
 
 ## Technical context
 
-Current project evidence supports work with:
+`TypeScript` · `Node.js` · `Next.js` · `Supabase` · `Expo / React Native` · `RevenueCat` · `Git / CI`
 
-`TypeScript` · `Node.js` · `Next.js` · `Supabase` · `Expo / React Native` · `RevenueCat`
+Technology is listed as implementation context, not as a self-rated proficiency score.
 
-These are implementation contexts, not self-rated proficiency badges.
+## Inspect the reasoning
 
-## Verification mindset
+- [Observable proof](PROOF.md)
+- [System view](docs/SYSTEM_VIEW.md)
+- [Engineering decisions](docs/DECISIONS.md)
+- [Verification approach](docs/VERIFICATION.md)
+- [Public / private boundary](PUBLIC_BOUNDARY.md)
 
-The core distinction is between **what the source intends** and **what the exact candidate actually demonstrated**. ReleaseProof preserves artifact identity, evidence, execution context and an explicit inconclusive state so the release decision can be challenged rather than merely trusted.
-
-See [docs/VERIFICATION.md](docs/VERIFICATION.md).
-
-## Current truth boundary
-
-This repository does **not** claim:
+## Not claimed
 
 - App Store approval prediction or guarantee;
-- broad framework support;
+- broad framework coverage;
 - production-scale customer adoption;
 - customer outcome metrics;
 - a finished general release-governance platform.
 
-Those claims require separate evidence.
-
-## Public / private boundary
-
-The private product implementation is not mirrored here. Source code, exact contracts, internal verifier logic, private fixtures, prompts, raw evidence and implementation details that would materially reproduce the system remain private.
-
-See [PUBLIC_BOUNDARY.md](PUBLIC_BOUNDARY.md).
+The implementation remains private. This repo exposes enough evidence to evaluate my engineering judgment without publishing the product blueprint.
