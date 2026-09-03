@@ -1,6 +1,8 @@
-# Selected engineering decisions
+# System requirements and trade-offs
 
-These are public reasoning boundaries, not a dump of private implementation details.
+These are requirements and trade-offs represented by the current ReleaseProof system. They explain the product/system boundary without claiming that I personally originated every low-level engineering choice used to implement it.
+
+My direct ownership is the product direction, high-level blueprint, expert/persona orchestration, constraints, acceptance criteria and quality gates. The implementation process is heavily AI-assisted.
 
 ## 1. Verify the exact candidate, not only the repository
 
@@ -18,13 +20,13 @@ The core public case focuses on purchase, entitlement and clean-session restore 
 
 A result observed in one environment should not silently be presented as equivalent to a result in another.
 
-**Trade-off:** this adds operational discipline, but prevents a cleaner-looking verdict from outrunning its context.
+**Trade-off:** more operational discipline, less risk that a verdict outruns its context.
 
 ## 4. Preserve `INCONCLUSIVE`
 
 If the evidence needed for a decision is incomplete, the system should say so.
 
-**Trade-off:** this produces fewer binary answers. It also avoids manufacturing confidence from missing data.
+**Trade-off:** fewer binary answers, less manufactured confidence from missing data.
 
 ## 5. Recheck without evidence mixing
 
@@ -32,10 +34,10 @@ A recheck after a fix should preserve which evidence came from which release can
 
 **Trade-off:** provenance is more work than a simple pass/fail log, but it keeps the release record inspectable.
 
-## Interview questions this should create
+## Questions this case study is intended to create
 
-- Why exact-artifact verification instead of source analysis?
-- Which evidence is necessary for a blocker?
-- How do you distinguish a product failure from an environment failure?
-- What makes a recheck reproducible?
-- Where would this model break for a different subscription stack?
+- What release risk is the product trying to remove?
+- Why is exact-artifact evidence stronger than a source-only claim for this use case?
+- What should count as sufficient evidence for a release decision?
+- What makes a recheck trustworthy?
+- Which parts of the blueprint were requirements I set, and which low-level choices came from the AI-assisted implementation process?
