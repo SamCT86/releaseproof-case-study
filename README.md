@@ -1,5 +1,7 @@
 # ReleaseProof — exact-artifact release verification, runnable reference
 
+[![verify-reference](https://github.com/SamCT86/releaseproof-case-study/actions/workflows/verify-reference.yml/badge.svg)](https://github.com/SamCT86/releaseproof-case-study/actions/workflows/verify-reference.yml)
+
 A public, executable engineering reference for one ReleaseProof principle: **evidence belongs to the exact artifact and environment that produced it.** The production release-verification system remains private.
 
 ## Five-minute technical evaluation
@@ -71,6 +73,12 @@ Private:
 - canary/customer artifacts and evidence;
 - production schemas and infrastructure;
 - proprietary release workflows and unreleased commercial logic.
+
+## Related runnable references
+
+- [Billable Meetings](https://github.com/SamCT86/billable-meetings-os-case-study) — deterministic contract + evidence → billability.
+- [MachineOutcome](https://github.com/SamCT86/machineoutcome-case-study) — observed-state verification and safe retry boundaries.
+- [PriceBriefs](https://github.com/SamCT86/pricebriefs-case-study) — evidence eligibility and explicit refusal states.
 
 ## Not claimed
 
