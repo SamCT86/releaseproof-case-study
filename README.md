@@ -4,7 +4,7 @@
 
 A public, executable engineering reference for one ReleaseProof principle: **evidence belongs to the exact artifact and environment that produced it.** The production release-verification system remains private.
 
-## Five-minute technical evaluation
+## Run locally
 
 ```bash
 git clone https://github.com/SamCT86/releaseproof-case-study.git
@@ -50,11 +50,11 @@ The private implementation is materially broader: artifact resolution, journey e
 
 This repository is a **reference edition**, not a source release of ReleaseProof.
 
-## How I build
+## Engineering ownership
 
-I use AI agents heavily for implementation, integration investigation, tests and adversarial review. My ownership is the product problem, exact-artifact/evidence doctrine, architecture constraints, acceptance gates, falsifiers and the decision to accept or reject the resulting system.
+AI tools are part of my implementation workflow. I use them to accelerate investigation, implementation, testing and review, while remaining accountable for the system boundary, architecture constraints, code review, debugging, acceptance criteria and the decision to ship or reject a change.
 
-I do not claim to have hand-written every line. The intended signal is the ability to direct AI-native implementation toward reproducible evidence, identity integrity and explicit uncertainty rather than treating source intent as proof of runtime behavior.
+The useful question here is not who typed each token. It is whether the behavior is explicit, testable, reproducible and safe under failure. The executable tests and design trade-offs in this repository are the public evidence for that claim.
 
 ## Public/private boundary
 

@@ -19,7 +19,7 @@ ReleaseProof is built with heavy use of AI agents/models. My role is not to clai
 - test scaffolding and edge-case generation;
 - technical review and documentation.
 
-I do **not** claim that I independently chose or hand-authored every library, data structure, code path or low-level engineering mechanism in the private implementation.
+AI assistance is explicit, but it does not outsource accountability: I review resulting behavior, debug failures, set acceptance gates and decide what is accepted or rejected.
 
 ## Working loop
 

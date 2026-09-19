@@ -6,7 +6,7 @@ This file answers a hiring-manager question that a case-study README cannot answ
 
 The points below were derived from a fresh read of the private implementation repository. No private source code, prompts, exact contracts, selectors, credentials or raw release artifacts are copied here.
 
-**Ownership note:** implementation evidence is not the same as a claim that I personally hand-authored or independently selected every low-level technical mechanism. My direct role is product research/direction, system blueprint and requirements, expert/persona orchestration, acceptance criteria and quality gates; AI is used heavily in implementation.
+**Engineering ownership:** AI assistance is used throughout the implementation workflow. I remain accountable for problem framing, architecture constraints, reviewing and debugging changes, acceptance/test gates and release decisions. Where this document cites behavior that remains in the private implementation, it is labeled as implementation evidence rather than as a claim about manual keystroke authorship.
 
 ## Implemented surfaces visible in the private source
 
@@ -75,11 +75,11 @@ The example is synthetic/redacted, but its fields reflect the public decision mo
 | Customer adoption / paid repeat use | Not claimed |
 | Broad framework coverage | Not claimed |
 
-## What I personally own and can explain
+## Engineering decisions I own and can explain
 
 - why I pursued the release-verification problem and what product risk I wanted the system to address;
 - the high-level blueprint and required product behavior;
-- how I structured expert/persona workflows to research, build, critique and revise the system;
+- how I structured implementation, review, critique and revision loops around the system;
 - the quality gates and evidence standard I required before accepting stronger claims;
 - what the current proof supports and what it explicitly does not support;
 - how I send AI-generated work back for further iteration when it does not meet the system or quality requirements.
