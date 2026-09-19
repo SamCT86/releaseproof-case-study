@@ -1,0 +1,9 @@
+{
+  "expectedArtifactSha": "sha:release-42",
+  "observedArtifactSha": "sha:release-42",
+  "originalReceiptArtifactSha": "sha:release-42",
+  "recheckReceiptArtifactSha": "sha:release-42",
+  "expectedEnvironment": "apple-sandbox",
+  "observedEnvironment": "apple-sandbox",
+  "evidenceComplete": true
+}
