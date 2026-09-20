@@ -1,12 +1,20 @@
-# ReleaseProof — exact-artifact release verification
+# ReleaseProof — verify the artifact that will actually ship
 
 [![verify-reference](https://github.com/SamCT86/releaseproof-case-study/actions/workflows/verify-reference.yml/badge.svg)](https://github.com/SamCT86/releaseproof-case-study/actions/workflows/verify-reference.yml)
 
-A small executable reference for one ReleaseProof invariant: **evidence belongs to the exact artifact and environment that produced it.** The production release-verification system remains private.
+**Engineering signal:** release identity, artifact provenance, evidence integrity and reproducible rechecks.
 
 **Portfolio:** https://sarmadtawfeek.se
 
-## Run locally
+A green source tree is not the same thing as a verified release artifact. Build configuration, environment, packaging or recheck drift can make valid-looking evidence belong to something other than the binary being shipped.
+
+ReleaseProof treats that identity problem as a first-class system invariant:
+
+> **Evidence belongs to the exact artifact and environment that produced it.**
+
+This repository publishes a small executable verifier for that boundary. The broader release-verification runtime remains private.
+
+## Run the verifier
 
 ```bash
 git clone https://github.com/SamCT86/releaseproof-case-study.git
@@ -14,48 +22,54 @@ cd releaseproof-case-study
 npm test
 ```
 
-Key files:
+Primary surfaces:
 
-- `src/reference-release-verifier.mjs` — bounded exact-artifact verifier;
-- `test/reference-release-verifier.test.mjs` — identity, cross-artifact and inconclusive-state tests;
-- `fixtures/exact-artifact-pass.json` — synthetic exact-build evidence;
-- `PROOF.md` — broader implementation evidence;
-- `PUBLIC_BOUNDARY.md` — public/private boundary.
+- `src/reference-release-verifier.mjs` — exact-artifact verification logic
+- `test/reference-release-verifier.test.mjs` — identity, cross-artifact and inconclusive-state tests
+- `fixtures/exact-artifact-pass.json` — synthetic exact-build evidence
+- `PROOF.md` — broader implementation evidence
+- `PUBLIC_BOUNDARY.md` — public/private boundary
 
-## Verification contract
+## Release identity contract
 
 ```text
-exact artifact identity
-+ same-artifact original evidence
-+ same-artifact recheck evidence
+candidate artifact identity
++ original same-artifact evidence
++ recheck same-artifact evidence
 + expected environment
-+ complete evidence
++ complete evidence chain
 → PASS | FAIL | INCONCLUSIVE
 ```
 
-The reference demonstrates that:
+The executable reference demonstrates that:
 
-- observed artifact mismatch fails closed;
-- evidence from another artifact cannot be silently reused;
-- recheck evidence from another artifact cannot be mixed in;
-- environment mismatch is `INCONCLUSIVE`, not a pass;
-- incomplete evidence is `INCONCLUSIVE`, not a pass;
-- only an exact, complete, same-environment evidence chain reaches `PASS`.
+1. observed artifact mismatch fails closed;
+2. evidence from another build cannot be silently reused;
+3. recheck evidence from another artifact cannot be mixed in;
+4. environment mismatch remains `INCONCLUSIVE`;
+5. incomplete evidence remains `INCONCLUSIVE`;
+6. only an exact, complete, same-environment chain reaches `PASS`.
 
-The artifact being shipped is the object being verified.
+The object being verified is the artifact being shipped—not the intent represented by a branch, commit message or source directory.
 
-## Production boundary
+## Why this matters
 
-The private implementation is materially broader: artifact resolution, journey execution, provider observations, evidence capture, recheck/sign-off, canary apps, control surfaces, persistence, CI and commercial-environment tooling. None of that production runtime is published here.
+Release automation becomes misleading when it can answer “tests passed” without proving **which artifact** those tests actually describe.
 
-Public here:
+The private implementation goes materially further: artifact resolution, journey execution, provider observations, evidence capture, hash-bound receipts, recheck/sign-off, canary apps, persistence, CI and commercial-environment tooling.
+
+A representative private mechanism verifies finalization hashes and artifact/run/evidence identity before a recheck can resolve an adverse finding. That implementation stays private; the public reference isolates the transferable engineering invariant.
+
+## Public / private boundary
+
+Published here:
 
 - bounded exact-artifact verification logic;
 - synthetic artifact/evidence identities;
 - executable tests and CI;
-- non-proprietary system/evidence documentation.
+- non-proprietary system documentation.
 
-Private:
+Kept private:
 
 - production artifact resolver/runtime;
 - provider credentials and environments;
@@ -63,15 +77,16 @@ Private:
 - production schemas and infrastructure;
 - proprietary release workflows and unreleased commercial logic.
 
-## Engineering process
+## Engineering accountability
 
-AI tools are part of the implementation workflow. I remain accountable for system boundaries, architecture constraints, code review, debugging, acceptance criteria, tests and release decisions.
+AI tools are part of my implementation workflow. I remain accountable for problem framing, architecture constraints, debugging, acceptance criteria, verification design, tests and release decisions.
 
-## Related references
+## Related engineering proof
 
-- [Billable Meetings](https://github.com/SamCT86/billable-meetings-os-case-study) — deterministic contract + evidence → billability.
-- [MachineOutcome](https://github.com/SamCT86/machineoutcome-case-study) — observed-state verification and safe retry boundaries.
-- [PriceBriefs](https://github.com/SamCT86/pricebriefs-case-study) — evidence eligibility and explicit refusal states.
+- [Agent Forecast Foundry](https://github.com/SamCT86/agent-cashflow-os-case-study) — bounded post-model verification and AI evaluation mechanics.
+- [MachineOutcome](https://github.com/SamCT86/machineoutcome-case-study) — observed-state reconciliation before agent retry.
+- [Billable Meetings](https://github.com/SamCT86/billable-meetings-os-case-study) — deterministic commercial decisions from contract + evidence.
+- [PriceBriefs](https://github.com/SamCT86/pricebriefs-case-study) — source eligibility and evidence-backed market decisions.
 
 ## Scope
 
