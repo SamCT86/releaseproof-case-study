@@ -83,7 +83,7 @@ AI tools are part of my implementation workflow. I remain accountable for proble
 
 ## Related engineering proof
 
-- [Agent Forecast Foundry](https://github.com/SamCT86/agent-cashflow-os-case-study) — bounded post-model verification and AI evaluation mechanics.
+- [Agent Forecast Foundry](https://github.com/SamCT86/agent-forecast-foundry-case-study) — bounded post-model verification and AI evaluation mechanics.
 - [MachineOutcome](https://github.com/SamCT86/machineoutcome-case-study) — observed-state reconciliation before agent retry.
 - [Billable Meetings](https://github.com/SamCT86/billable-meetings-os-case-study) — deterministic commercial decisions from contract + evidence.
 - [PriceBriefs](https://github.com/SamCT86/pricebriefs-case-study) — source eligibility and evidence-backed market decisions.
