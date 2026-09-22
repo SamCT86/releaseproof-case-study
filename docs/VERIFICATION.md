@@ -11,7 +11,7 @@ The system needs to know which release artifact the evidence belongs to.
 The bounded subscription journey is exercised against explicit expectations rather than inferred from source intent.
 
 ### 3. Evidence capture
-Relevant observations are preserved with enough context to support later review.
+Relevant observations are preserved with enough context to support later review. In the public reference, both original and recheck receipts must be bound to the candidate artifact and expected environment before the chain can reach `PASS`.
 
 ### 4. Verdict discipline
 The result should remain one of:
@@ -30,7 +30,8 @@ A corrected candidate can be re-evaluated without silently inheriting proof from
 AI can accelerate implementation and test generation, but the final decision boundary should still answer:
 
 - Did the exact candidate perform the required journey?
-- Is the evidence tied to that candidate and environment?
+- Is each original/recheck receipt tied to that candidate and environment?
+- Are required identity fields non-empty and is completeness represented by an actual boolean rather than a truthy value?
 - Is the failure classification supported by what was observed?
 - Is any required evidence missing?
 - Can the result be rechecked?
