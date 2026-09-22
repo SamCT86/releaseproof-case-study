@@ -69,18 +69,19 @@ test('non-boolean evidenceComplete cannot manufacture PASS through truthiness', 
   });
 });
 
-test('empty artifact and environment identities cannot compare equal into PASS', () => {
-  assert.deepEqual(verifyReleaseEvidence({
-    expectedArtifactSha: '',
-    observedArtifactSha: '',
-    originalReceiptArtifactSha: '',
-    originalReceiptEnvironment: '',
-    recheckReceiptArtifactSha: '',
-    recheckReceiptEnvironment: '',
-    expectedEnvironment: '',
-    observedEnvironment: '',
-    evidenceComplete: true,
-  }), {
-    status: 'INCONCLUSIVE', reason: 'INVALID_EVIDENCE_CONTRACT'
+for (const field of [
+  'expectedArtifactSha',
+  'observedArtifactSha',
+  'originalReceiptArtifactSha',
+  'originalReceiptEnvironment',
+  'recheckReceiptArtifactSha',
+  'recheckReceiptEnvironment',
+  'expectedEnvironment',
+  'observedEnvironment',
+]) {
+  test(`empty ${field} cannot compare equal into PASS`, () => {
+    assert.deepEqual(verifyReleaseEvidence(base({ [field]: '   ' })), {
+      status: 'INCONCLUSIVE', reason: 'INVALID_EVIDENCE_CONTRACT'
+    });
   });
-});
+}
