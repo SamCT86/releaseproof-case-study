@@ -2,7 +2,9 @@
   "expectedArtifactSha": "sha:release-42",
   "observedArtifactSha": "sha:release-42",
   "originalReceiptArtifactSha": "sha:release-42",
+  "originalReceiptEnvironment": "apple-sandbox",
   "recheckReceiptArtifactSha": "sha:release-42",
+  "recheckReceiptEnvironment": "apple-sandbox",
   "expectedEnvironment": "apple-sandbox",
   "observedEnvironment": "apple-sandbox",
   "evidenceComplete": true

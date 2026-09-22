@@ -39,9 +39,9 @@ Unsafe conclusion — intentionally not made:
 
 Those are different environments and different claims.
 
-### Artifact-bound verdicts
+### Artifact- and environment-bound verdicts
 
-Evidence records are bound to a concrete artifact identity rather than an `auto` or floating latest-build concept. Rechecks compare evidence only when provenance is sufficiently comparable.
+Evidence records are bound to a concrete artifact identity rather than an `auto` or floating latest-build concept. The public verifier now also binds original and recheck receipts to the expected environment, rejects malformed/empty identity contracts as `INCONCLUSIVE`, and requires `evidenceComplete` to be a real boolean. Rechecks therefore cannot reach `PASS` by mixing same-artifact evidence from another environment or by relying on JavaScript truthiness.
 
 ### Preserved failure replay
 
