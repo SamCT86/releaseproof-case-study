@@ -77,17 +77,12 @@ Kept private:
 - production schemas and infrastructure;
 - proprietary release workflows and unreleased commercial logic.
 
-## Related work
+## The claim I want this repo to earn
 
-- [Agent Forecast Foundry](https://github.com/SamCT86/agent-forecast-foundry-case-study) - verify AI-agent runs after the model responds.
-- [MachineOutcome](https://github.com/SamCT86/machineoutcome-case-study) - read back external state before retrying a mutation.
-- [Billable Meetings](https://github.com/SamCT86/billable-meetings-os-case-study) - turn contract rules and meeting evidence into deterministic decisions.
-- [PriceBriefs](https://github.com/SamCT86/pricebriefs-case-study) - validate market evidence before commercial action.
+If a release check says `PASS`, the evidence should be tied to the exact artifact and environment being judged. That is the engineering idea this public slice is built to demonstrate.
 
-## Engineering accountability
+It does **not** predict App Store approval, prove customer outcomes, claim broad framework coverage, or pretend that this reference is the production ReleaseProof runtime.
 
-I use AI tools as part of my implementation workflow. I remain responsible for the problem framing, architecture, debugging, acceptance criteria, verification design, tests, and release decisions.
+I use AI tools during implementation. I still own the identity model, failure cases, debugging, verification design, tests, and release decisions.
 
-## Scope
-
-ReleaseProof does not predict or guarantee App Store approval. This repository does not claim customer outcome metrics, broad framework coverage, product-market fit, or that this public reference is the production ReleaseProof runtime.
+For the broader Applied AI picture, start with [Agent Forecast Foundry](https://github.com/SamCT86/agent-forecast-foundry-case-study).
