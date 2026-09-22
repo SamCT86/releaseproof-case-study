@@ -35,12 +35,14 @@ The reference demonstrates that:
 
 1. artifact mismatch fails closed;
 2. evidence from another build cannot be reused silently;
-3. recheck evidence from another artifact cannot be mixed in;
-4. environment mismatch stays `INCONCLUSIVE`;
-5. incomplete evidence stays `INCONCLUSIVE`;
-6. only an exact and complete same-environment chain reaches `PASS`.
+3. original and recheck receipts must name the same environment as the candidate;
+4. recheck evidence from another artifact cannot be mixed in;
+5. malformed or empty identity fields remain `INCONCLUSIVE`;
+6. environment mismatch stays `INCONCLUSIVE`;
+7. incomplete evidence stays `INCONCLUSIVE`;
+8. only an exact, complete, same-artifact and same-environment chain reaches `PASS`.
 
-The object being verified is the artifact that will ship, not the intent represented by a branch name, commit message, or source directory.
+The object being verified is the artifact that will ship, not the intent represented by a branch name, commit message, or source directory. The public verifier treats artifact identity and environment as part of the evidence contract; matching values are not enough if required identity fields are empty or malformed.
 
 ## What to inspect
 
