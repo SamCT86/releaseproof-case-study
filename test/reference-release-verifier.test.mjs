@@ -7,7 +7,9 @@ function base(overrides = {}) {
     expectedArtifactSha: 'sha:release-42',
     observedArtifactSha: 'sha:release-42',
     originalReceiptArtifactSha: 'sha:release-42',
+    originalReceiptEnvironment: 'apple-sandbox',
     recheckReceiptArtifactSha: 'sha:release-42',
+    recheckReceiptEnvironment: 'apple-sandbox',
     expectedEnvironment: 'apple-sandbox',
     observedEnvironment: 'apple-sandbox',
     evidenceComplete: true,
@@ -46,5 +48,39 @@ test('environment mismatch remains INCONCLUSIVE instead of pass', () => {
 test('incomplete evidence remains INCONCLUSIVE instead of pass', () => {
   assert.deepEqual(verifyReleaseEvidence(base({ evidenceComplete: false })), {
     status: 'INCONCLUSIVE', reason: 'EVIDENCE_INCOMPLETE'
+  });
+});
+
+test('original receipt from another environment cannot be mixed into a passing release', () => {
+  assert.deepEqual(verifyReleaseEvidence(base({ originalReceiptEnvironment: 'revenuecat-test-store' })), {
+    status: 'INCONCLUSIVE', reason: 'ORIGINAL_RECEIPT_ENVIRONMENT_MISMATCH'
+  });
+});
+
+test('recheck receipt from another environment cannot be mixed into a passing release', () => {
+  assert.deepEqual(verifyReleaseEvidence(base({ recheckReceiptEnvironment: 'testflight' })), {
+    status: 'INCONCLUSIVE', reason: 'RECHECK_RECEIPT_ENVIRONMENT_MISMATCH'
+  });
+});
+
+test('non-boolean evidenceComplete cannot manufacture PASS through truthiness', () => {
+  assert.deepEqual(verifyReleaseEvidence(base({ evidenceComplete: 'false' })), {
+    status: 'INCONCLUSIVE', reason: 'INVALID_EVIDENCE_CONTRACT'
+  });
+});
+
+test('empty artifact and environment identities cannot compare equal into PASS', () => {
+  assert.deepEqual(verifyReleaseEvidence({
+    expectedArtifactSha: '',
+    observedArtifactSha: '',
+    originalReceiptArtifactSha: '',
+    originalReceiptEnvironment: '',
+    recheckReceiptArtifactSha: '',
+    recheckReceiptEnvironment: '',
+    expectedEnvironment: '',
+    observedEnvironment: '',
+    evidenceComplete: true,
+  }), {
+    status: 'INCONCLUSIVE', reason: 'INVALID_EVIDENCE_CONTRACT'
   });
 });
