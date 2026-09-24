@@ -85,4 +85,4 @@ It does **not** predict App Store approval, prove customer outcomes, claim broad
 
 I use AI tools during implementation. I still own the identity model, failure cases, debugging, verification design, tests, and release decisions.
 
-For the broader Applied AI picture, start with [Agent Forecast Foundry](https://github.com/SamCT86/agent-forecast-foundry-case-study).
+For the broader portfolio and how these public references fit together, see [my GitHub profile](https://github.com/SamCT86) or [sarmadtawfeek.se](https://sarmadtawfeek.se).
