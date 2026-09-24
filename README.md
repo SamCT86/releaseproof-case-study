@@ -6,7 +6,7 @@
 
 A green source tree does not automatically mean the final release artifact is verified.
 
-Build settings, environment differences, packaging, or a later recheck can make valid-looking evidence belong to something other than the binary that will actually ship. I built ReleaseProof around that identity problem.
+Build settings, environment differences, packaging, or a later recheck can make valid-looking evidence belong to something other than the binary that will actually ship. ReleaseProof is built around that identity problem.
 
 > **Release evidence should belong to the exact artifact and environment that produced it.**
 
@@ -83,6 +83,6 @@ If a release check says `PASS`, the evidence should be tied to the exact artifac
 
 It does **not** predict App Store approval, prove customer outcomes, claim broad framework coverage, or pretend that this reference is the production ReleaseProof runtime.
 
-I use AI tools during implementation. I still own the identity model, failure cases, debugging, verification design, tests, and release decisions.
+This reference is AI-assisted. My role is to define the problem and identity model, direct the implementation, set acceptance criteria, test the failure cases, verify the behavior and make the final release decision. It is not a claim that I manually wrote every line.
 
 For the broader portfolio and how these public references fit together, see [my GitHub profile](https://github.com/SamCT86) or [sarmadtawfeek.se](https://sarmadtawfeek.se).
